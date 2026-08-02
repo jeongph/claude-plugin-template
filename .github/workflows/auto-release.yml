@@ -13,6 +13,10 @@ on:
 
 jobs:
   release:
+    # 템플릿 레포 자신은 배포 대상이 아니다. 이 줄이 없으면 템플릿을 손볼
+    # 때마다 여기서 릴리스가 만들어진다. 템플릿으로 만든 레포에서는 조건이
+    # 참이 되어 정상 동작하므로 지우지 않아도 된다.
+    if: github.repository != 'jeongph/claude-plugin-template'
     uses: jeongph/claude-plugins/.github/workflows/auto-release.yml@main
     permissions:
       contents: write
