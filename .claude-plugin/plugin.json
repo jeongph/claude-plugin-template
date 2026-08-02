@@ -1,6 +1,6 @@
 {
   "name": "PLUGIN_NAME",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "한 줄 설명 — 설치하면 무엇이 달라지는지 쓴다",
   "author": { "name": "JeongUk Park", "url": "https://github.com/jeongph" },
   "homepage": "https://github.com/jeongph/PLUGIN_NAME",
