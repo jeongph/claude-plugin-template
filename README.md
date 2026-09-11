@@ -68,7 +68,7 @@ MIT — [LICENSE](LICENSE) 참조
 
 없는 디렉토리는 만들지 않아도 된다.
 
-**3. 릴리스 — 손댈 것이 없다**
+**3. 자동 릴리스**
 
 `main`에 머지하면 [claude-plugins의 재사용 워크플로우](https://github.com/jeongph/claude-plugins/blob/main/.github/workflows/auto-release.yml)가 커밋 타입에서 버전을 정한다.
 
@@ -79,7 +79,7 @@ MIT — [LICENSE](LICENSE) 참조
 | BREAKING (`!` 또는 `BREAKING CHANGE:`) | major가 0이면 minor, 1 이상이면 major |
 | `docs:` `style:` `test:` `ci:` `chore:` | 릴리스하지 않음 |
 
-범프는 누적이 아니라 **가장 높은 등급 한 번**이다. `feat`이 10건이어도 minor 한 번이다.
+여러 커밋이 있으면 가장 높은 변경 유형을 기준으로 버전을 한 번 올린다. 예를 들어 `feat`이 10건이어도 minor 버전은 한 번만 올린다.
 
 `plugin.json` 갱신 → 태그 → Release → README 뱃지까지 자동으로 이어진다.
 
@@ -101,4 +101,4 @@ MIT — [LICENSE](LICENSE) 참조
 
 `sha`는 아무 값이나 두면 매시간 도는 동기화가 실제 HEAD로 채운다.
 
-> **주의**: `plugin.json`의 `version`을 지우지 마라. 마켓플레이스는 그 문자열로 플러그인을 핀하고, 자동 릴리스도 그 값을 기준으로 다음 버전을 계산한다.
+> `plugin.json`의 `version`은 유지한다. 마켓플레이스는 이 값으로 플러그인 버전을 고정하고, 자동 릴리스는 이 값을 기준으로 다음 버전을 계산한다.
