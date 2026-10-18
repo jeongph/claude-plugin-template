@@ -3,7 +3,7 @@
 [![version](https://img.shields.io/github/v/release/jeongph/PLUGIN_NAME?label=version&color=blue)](https://github.com/jeongph/PLUGIN_NAME/releases)
 [![license](https://img.shields.io/github/license/jeongph/PLUGIN_NAME?color=lightgrey)](LICENSE)
 
-한 줄 설명 — 설치하면 무엇이 달라지는지 쓴다.
+한 줄 설명: 설치하면 무엇이 달라지는지 쓴다.
 
 ## 설치
 
@@ -27,8 +27,8 @@
 
 | 종류 | 이름 | 역할 |
 |------|------|------|
-| command | `/example` | (예시 — 실제 컴포넌트로 바꾼다) |
-| skill | `example-skill` | (예시 — 실제 컴포넌트로 바꾼다) |
+| command | `/example` | (예시: 실제 컴포넌트로 바꾼다) |
+| skill | `example-skill` | (예시: 실제 컴포넌트로 바꾼다) |
 
 ## 사용 예
 
@@ -38,12 +38,12 @@
 
 ## 라이선스
 
-MIT — [LICENSE](LICENSE) 참조
+MIT ([LICENSE](LICENSE) 참조)
 
 ---
 
 <!-- TEMPLATE-DOCS-START -->
-<!-- 아래는 템플릿 안내다. scripts/init.sh 가 이 블록을 통째로 지운다. -->
+<!-- 아래는 템플릿 안내다. scripts/init.sh가 이 블록을 통째로 지운다. -->
 
 ## 템플릿 사용법
 
@@ -99,6 +99,6 @@ MIT — [LICENSE](LICENSE) 참조
 }
 ```
 
-`sha`는 아무 값이나 두면 매시간 도는 동기화가 실제 HEAD로 채운다.
+`sha`에는 아무 값이나 넣어 두면 매시간 도는 동기화가 실제 HEAD로 채운다.
 
 > `plugin.json`의 `version`은 유지한다. 마켓플레이스는 이 값으로 플러그인 버전을 고정하고, 자동 릴리스는 이 값을 기준으로 다음 버전을 계산한다.

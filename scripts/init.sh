@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # 템플릿에서 만든 레포를 실제 플러그인으로 초기화한다.
 #
-#   ./scripts/init.sh                 # git remote 에서 이름을 알아낸다
+#   ./scripts/init.sh                 # git remote에서 이름을 알아낸다
 #   ./scripts/init.sh my-plugin       # 이름을 직접 준다
 #
 # PLUGIN_NAME 플레이스홀더를 실제 이름으로 바꾸고, 예시 컴포넌트와 이
@@ -26,17 +26,17 @@ if [ "$NAME" = "claude-plugin-template" ]; then
 fi
 
 if ! printf '%s' "$NAME" | grep -qE '^[a-z0-9]+(-[a-z0-9]+)*$'; then
-  echo "플러그인 이름은 kebab-case 여야 한다: $NAME" >&2
+  echo "플러그인 이름은 kebab-case여야 한다: $NAME" >&2
   exit 1
 fi
 
 echo "플러그인 이름: $NAME"
 
-# 플레이스홀더 치환 — 텍스트 파일만 훑는다.
+# 플레이스홀더 치환: 텍스트 파일만 훑는다.
 files=$(grep -rl 'PLUGIN_NAME' . --exclude-dir=.git 2>/dev/null || true)
 if [ -n "$files" ]; then
   printf '%s\n' "$files" | while IFS= read -r f; do
-    # BSD sed 와 GNU sed 의 -i 인자 규칙이 달라 임시 파일로 우회한다.
+    # BSD sed와 GNU sed의 -i 인자 규칙이 달라 임시 파일로 우회한다.
     sed "s/PLUGIN_NAME/$NAME/g" "$f" > "$f.tmp" && mv "$f.tmp" "$f"
     echo "  치환: $f"
   done
@@ -45,7 +45,7 @@ fi
 # README 끝에 붙은 템플릿 안내 블록을 걷어낸다.
 if grep -q '^<!-- TEMPLATE-DOCS-START -->' README.md 2>/dev/null; then
   # 마커부터 끝까지 버리고, 그 앞에 놓였던 구분선과 빈 줄도 함께 걷어낸다.
-  # awk 의 exit 는 END 블록을 건너뛰지 않으므로 여기서 마무리한다.
+  # awk의 exit는 END 블록을 건너뛰지 않으므로 여기서 마무리한다.
   awk '
     /^<!-- TEMPLATE-DOCS-START -->/ { exit }
     { lines[NR] = $0 }
@@ -56,7 +56,7 @@ if grep -q '^<!-- TEMPLATE-DOCS-START -->' README.md 2>/dev/null; then
     }
   ' README.md > README.tmp
   mv README.tmp README.md
-  echo "  README 의 템플릿 안내 블록 제거"
+  echo "  README의 템플릿 안내 블록 제거"
 fi
 
 printf '\n예시 컴포넌트(commands/example.md, skills/example-skill)를 지울까? [y/N] '
@@ -85,15 +85,15 @@ cat <<EOF
 
 초기화 완료. 남은 일:
 
-  1. .claude-plugin/plugin.json 의 description·keywords 를 채운다
-  2. 컴포넌트를 만든다 (commands/ · skills/ · hooks/ · agents/)
-  3. README 를 채운다
-  4. 커밋해서 main 에 올린다
+  1. .claude-plugin/plugin.json의 description과 keywords를 채운다
+  2. 컴포넌트를 만든다 (commands/, skills/, hooks/, agents/)
+  3. README를 채운다
+  4. 커밋해서 main에 올린다
        feat: ... 으로 커밋하면 0.1.0 -> 0.2.0
        fix:  ... 으로 커밋하면 0.1.0 -> 0.1.1
-     태그·Release·뱃지가 자동으로 따라온다
-  5. 마켓플레이스에 등록한다 — jeongph/claude-plugins 의
-     .claude-plugin/marketplace.json 에 항목을 추가하면
-     매시간 도는 동기화가 SHA 를 채운다
+     태그, Release, 뱃지가 자동으로 따라온다
+  5. 마켓플레이스에 등록한다. jeongph/claude-plugins의
+     .claude-plugin/marketplace.json에 항목을 추가하면
+     매시간 도는 동기화가 SHA를 채운다
 
 EOF
